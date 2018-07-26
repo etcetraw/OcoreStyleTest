@@ -1,0 +1,47 @@
+<style  asp-src="/Alternating/css/alternatingitems.min.css"  at="Head"></style>
+<script asp-src="/Alternating/alternating.js" at="Foot"></script>
+@if(Model.ContentItem.Content.BagPart.ContentItems.Count > 0)
+{ 
+<section id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading text-uppercase">@Model.ContentItem.Content.TitlePart.Title</h2>
+                @*<h3 class="section-subheading text-muted">@Model.ContentItem.Content.HtmlBodyPart.Html </h3>*@
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="timeline">
+                    @{
+                        int i = 0;
+                    }
+                    @foreach (var item in Model.ContentItem.Content.BagPart.ContentItems)
+                    {
+
+                        
+                            var variable = "";
+                            if (i % 2 == 0) { variable = "flex-row-reverse timeline-inverted"; }
+                            i++;
+                          
+                        <div class="py-5 row @variable">
+                            <div class="col-md-6 col-sm-12 d-flex justify-content-center timeline-image">
+                                <img class="rounded-circle img-fluid" asset-src="@item.AlternatingItem.AlternatingItemImage.Paths[0]" img-width="160" img-height="160" img-resize-mode="Stretch" alt="@item.TitlePart.Title" />
+                            </div>
+                            <div class="col-md-6 col-sm-12 timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4 class="subheading">@item.TitlePart.Title</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">@item.HtmlBodyPart.Html</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+}
